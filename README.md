@@ -6,9 +6,9 @@ Create your ddns host on https://dynv6.com/zones
 Get your HTTP Token on https://dynv6.com/keys
 
 Run this PowerShell script with 3 parameters:
-  1- Your Host - Mandatory
-  2- Yout Token - Mandatory
-  3- Uptate Interval in seconds - If is null, default of 1800 (30 minutes) 
+  1. Your Host - Mandatory
+  2. Yout Token - Mandatory
+  3. Uptate Interval in seconds - If is null, default of 1800 (30 minutes) 
 
 Example: powershell ./DynV6_Updater.ps1 myhost.v6.rocks blablablablablabla 600
 
