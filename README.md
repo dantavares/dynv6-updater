@@ -3,7 +3,7 @@ A PowerShell app to update your dynv6 ddns.
 
 Create your free ddns host on https://dynv6.com
 
-Get your token on https://dynv6.com/keys
+Get your HTTP Token on https://dynv6.com/keys
 
 Run this PowerShell script with 3 parameters:
 1- Your Host - Mandatory
