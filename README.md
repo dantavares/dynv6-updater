@@ -1,7 +1,7 @@
 # dynv6-updater
 A PowerShell app to update your dynv6 ddns.
 
-Only run this PowerShell script with 3 parameters:
+Run this PowerShell script with 3 parameters:
 1- Your Host - Mandatory
 2- Yout Token - Mandatory
 3- Uptate Interval in seconds - If is null, default of 1800 (30 minutes) 
