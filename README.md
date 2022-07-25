@@ -1,7 +1,7 @@
 # dynv6-updater
 A PowerShell app to update your dynv6 ddns.
 
-Create your free ddns host on https://dynv6.com/zones
+Create your ddns host on https://dynv6.com/zones
 
 Get your HTTP Token on https://dynv6.com/keys
 
