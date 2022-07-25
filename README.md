@@ -12,4 +12,4 @@ Or you can simply use Start-DynV6_Updater.cmd batch file, dont forguet to edit a
 
 You can create a link of Start-DynV6_Updater.cmd on "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup" and the script is running on system startup.
 
-Tested on Windows8.1
+Tested on Windows 8.1
