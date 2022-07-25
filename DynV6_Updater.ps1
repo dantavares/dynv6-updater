@@ -44,6 +44,18 @@ function Sync {
     $Response4 = Invoke-WebRequest -UseBasicParsing -URI "http://ipv4.dynv6.com/api/update?hostname=$hostname&token=$token&ipv4=auto"
     $Response6 = Invoke-WebRequest -UseBasicParsing -URI "http://ipv6.dynv6.com/api/update?hostname=$hostname&token=$token&ipv6=auto&ipv6prefix=auto"
     $Date = Get-Date -UFormat "%d/%m/%y %R"
+    $Global:Tipicon = "Info"
+
+    if ([string]::IsNullOrEmpty($Response4)) {
+        $Global:tipicon = "Error"
+        $Response4 = "Error! Check your credentials or Internet Connection"
+    }
+
+    if ([string]::IsNullOrEmpty($Response6)) {
+        $Global:tipicon = "Error"
+        $Response6 = "Error! Check your credentials or IPv6 Status"
+    }
+
     $Global:Response = "Last Update: $Date`r`nIPv4: $Response4 `r`nIPv6: $Response6"
 }
 Sync
@@ -78,13 +90,13 @@ $Main_Tool_Icon.ContextMenu = $contextmenu
 $Main_Tool_Icon.ContextMenu.MenuItems.AddRange($Show_Status)
 $Main_Tool_Icon.ContextMenu.MenuItems.AddRange($Sync_Now)
 $Main_Tool_Icon.ContextMenu.MenuItems.AddRange($Menu_Exit)
-$Main_Tool_Icon.BalloonTipIcon = "Info"
 $Main_Tool_Icon.BalloonTipTitle = "DynV6 Status"
 
 # ---------------------------------------------------------------------
 # Action after clicking on Show Status
 # ---------------------------------------------------------------------
 $Show_Status.Add_Click({	
+    $Main_Tool_Icon.BalloonTipIcon = $Global:Tipicon
     $Main_Tool_Icon.BalloonTipText = $Global:Response
     $Main_Tool_Icon.ShowBalloonTip(1000)
 })
