@@ -8,5 +8,8 @@ Only run this PowerShell script with 3 parameters:
 
 Example: powershell ./DynV6_Updater.ps1 myhost.v6.rocks blablablablablabla 600
 
-Or you can simply use Start-DynV6_Updater.cmd batch file, dont forguet to edit
-and suppy your credentials.
+Or you can simply use Start-DynV6_Updater.cmd batch file, dont forguet to edit and suppy your credentials.
+
+You can create a link of Start-DynV6_Updater.cmd on "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup" and the script is running on system startup.
+
+Tested on Windows8.1
