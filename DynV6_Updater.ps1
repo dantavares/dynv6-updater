@@ -9,7 +9,7 @@ if ( [string]::IsNullOrEmpty( $args[1] ) ) { Stop-Process $pid }
 if ( [string]::IsNullOrEmpty( $args[2] ) ) { $interval = 1800 } #Default 30 minutes interval
 
 # ----------------------------------------------------
-# Extract "Sync" Icon from Shell32.dll
+# Extract "Sync" and "Warning" Icon from Shell32.dll
 # ----------------------------------------------------		
 $exicon = @"
 using System;
@@ -35,7 +35,6 @@ namespace System {
 }
 "@
 Add-Type -TypeDefinition $exicon -ReferencedAssemblies System.Drawing
-$icon = [System.IconExtractor]::Extract("shell32.dll", 238, $true)
 
 # ----------------------------------------------------
 # Main Sync Function and Sync first time
@@ -45,14 +44,17 @@ function Sync {
     $Response6 = Invoke-WebRequest -UseBasicParsing -URI "http://ipv6.dynv6.com/api/update?hostname=$hostname&token=$token&ipv6=auto&ipv6prefix=auto"
     $Date = Get-Date -UFormat "%d/%m/%y %R"
     $Global:Tipicon = "Info"
+    $Global:icon = [System.IconExtractor]::Extract("shell32.dll", 238, $true)
 
     if ([string]::IsNullOrEmpty($Response4)) {
-        $Global:tipicon = "Error"
+        $Global:Tipicon = "Error"
+        $Global:icon = [System.IconExtractor]::Extract("shell32.dll", 237, $true)
         $Response4 = "Error! Check your credentials or Internet Connection"
     }
 
     if ([string]::IsNullOrEmpty($Response6)) {
-        $Global:tipicon = "Error"
+        $Global:Tipicon = "Error"
+        $Global:icon = [System.IconExtractor]::Extract("shell32.dll", 237, $true)
         $Response6 = "Error! Check your credentials or IPv6 Status"
     }
 
@@ -61,19 +63,11 @@ function Sync {
 Sync
 
 # ----------------------------------------------------
-# Timer event to periodically sync at specified interval
-# ----------------------------------------------------		
-$timer = New-Object System.Windows.Forms.Timer
-$timer.Interval = $interval * 1000
-$timer.Add_Tick({Sync})
-$timer.Start()
-
-# ----------------------------------------------------
 # Add the systray menu
 # ----------------------------------------------------		
 $Main_Tool_Icon = New-Object System.Windows.Forms.NotifyIcon
 $Main_Tool_Icon.Text = "DynV6 Updater"
-$Main_Tool_Icon.Icon = $icon
+$Main_Tool_Icon.Icon = $Global:icon
 $Main_Tool_Icon.Visible = $true
 
 $Show_Status = New-Object System.Windows.Forms.MenuItem
@@ -106,7 +100,9 @@ $Show_Status.Add_Click({
 # ---------------------------------------------------------------------
 $Sync_Now.Add_Click({
     Sync
+    $Main_Tool_Icon.Icon = $Global:icon
 })
+
 
 # ---------------------------------------------------------------------
 # Action on close 
@@ -116,6 +112,14 @@ $Menu_Exit.add_Click({
 	$Main_Tool_Icon.Dispose()
 	Stop-Process $pid
 })
+
+# ----------------------------------------------------
+# Timer event to periodically sync at specified interval
+# ----------------------------------------------------		
+$timer = New-Object System.Windows.Forms.Timer
+$timer.Interval = $interval * 1000
+$timer.Add_Tick({ $Sync_Now.PerformClick() })
+$timer.Start()
 
 # Make PowerShell Disappear
 $windowcode = '[DllImport("user32.dll")] public static extern bool ShowWindowAsync(IntPtr hWnd, int nCmdShow);'
