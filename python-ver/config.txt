@@ -1,0 +1,3 @@
+hostname: 'danielr.v6.rocks'
+token: 'jmSJcXUp_3EBssHp8BKH92GQzVFNFV'
+interval: 60
