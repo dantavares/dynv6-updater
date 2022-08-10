@@ -21,8 +21,8 @@ icon = QIcon("sync.png")
 # Adding item on the menu bar
 tray = QSystemTrayIcon()
 tray.setIcon(icon)
+tray.setToolTip("DynV6 Updater")
 tray.setVisible(True)
-
 
 def showmessage():
     tray.showMessage("DynV6 Updater", lstupt, icon)
