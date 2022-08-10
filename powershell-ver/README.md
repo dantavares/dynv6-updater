@@ -20,7 +20,4 @@ Or you can simply use Start-DynV6_Updater.cmd batch file, dont forguet to edit a
 
 You can create a link of Start-DynV6_Updater.cmd on "%userprofile%\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup" and the script will running on system startup.
 
-## Working
-After running the script, an update icon will appear in your system tray, hover over it and you will see the name "DynV6 Updater". Click on this icon with the right button, and you will see the possible options, which are self explanatory: Show Status, Sync Now and Exit. If you've come this far, you're smart enough to understand what they do.
-
-Tested on Windows 8.1
+### Tested on Windows 8.1
