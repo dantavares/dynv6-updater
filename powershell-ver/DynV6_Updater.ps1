@@ -41,12 +41,10 @@ private static extern int ExtractIconEx(string sFile, int iIndex, out IntPtr piL
 Add-Type -TypeDefinition $exicon -ReferencedAssemblies System.Drawing
 $Global:icon = [System.IconExtractor]::Extract("shell32.dll", 238, $true)
 
-
 #-----------------------------------------------------
 # Info Form 
 #-----------------------------------------------------
-function InfoForm {
-    
+function InfoForm {    
     $MainForm.Dispose()
     $MainForm = New-Object System.Windows.Forms.Form
     
@@ -61,7 +59,7 @@ function InfoForm {
 	$MainForm.Name = "MainForm"
 	$MainForm.DataBindings.DefaultDataSourceUpdateMode = 0
 	$MainForm.Icon = $Global:icon
-    $System_Drawing_Size = New-Object System.Drawing.Size
+    	$System_Drawing_Size = New-Object System.Drawing.Size
 	$System_Drawing_Size.Width = 300
 	$System_Drawing_Size.Height = 150
 	$MainForm.ClientSize = $System_Drawing_Size
@@ -150,13 +148,11 @@ function InfoForm {
 	
 	# Add EXIT Button Click event
 	$ExitButton.Add_Click({   
-		#$MainForm.Close()
-        $MainForm.Dispose()        
+		$MainForm.Dispose()        
 	})
 	
 	# Show Form
 	$MainForm.ShowDialog() | Out-Null
-
 }
 
 # ----------------------------------------------------
@@ -192,11 +188,6 @@ $Main_Tool_Icon.Text = "DynV6 Updater"
 $Main_Tool_Icon.Icon = $Global:icon
 $Main_Tool_Icon.Visible = $true
 
-$Main_Tool_Icon.Add_Click({
-    #InfoForm
-})
-
-
 $Show_Status = New-Object System.Windows.Forms.MenuItem
 $Show_Status.text = "Show Status"
 
@@ -230,7 +221,6 @@ $Sync_Now.Add_Click({
         InfoForm
     }
 })
-
 
 # ---------------------------------------------------------------------
 # Action on close 
