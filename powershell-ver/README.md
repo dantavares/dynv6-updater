@@ -9,9 +9,9 @@ Get your HTTP Token on https://dynv6.com/keys
 
 ## Running
 
-Edit the config.txt file with your host, token and refresh interval, in json format
+Edit the config.txt file with your host, token and refresh interval (in seconds). Respect the json format.
 
-Start the app via the Start-DynV6 Update.cmd script for better compatibility
+Start the app via the Start-DynV6 Update.cmd script for better compatibility.
 
 An icon will be created in the system tray, right click to sync now, show status or exit.
 
