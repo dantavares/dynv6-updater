@@ -1,7 +1,7 @@
 {
 
-"hostname" : "danielr.v6.rocks",
-"token"    : "jmSJcXUp_3EBssHp8BKH92GQzVFNFV",
-"interval" : 60 
+"hostname" : "Your DynV6 Hostname",
+"token"    : "Your DynV6 Token",
+"interval" : 1800
 
 }
